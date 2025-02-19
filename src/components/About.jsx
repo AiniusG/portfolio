@@ -1,4 +1,4 @@
-import personalPic from "/StudAts.jpg";
+import personalPic from "/Me.jpg";
 
 export default function About() {
   return (

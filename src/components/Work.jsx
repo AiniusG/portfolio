@@ -1,51 +1,53 @@
 import { useState } from "react";
 import telesoftas from "/Telesoftas.png";
+import hourglass from "/Hourglass.png";
+import vu from "/Vilnius_university_logo.png";
 
 const workExperience = [
   {
     id: 1,
+    title: "Software Engineering Student",
+    company: "Vilnius University",
+    date: "2023 - Present",
+    description:
+      "I am currentlly a 2nd year bachelors student at Vilnius University studying software engineering.",
+    logo: vu,
+  },
+  {
+    id: 2,
     title: "Full Stack Internship",
     company: "Telesoftas",
     date: "Aug 2024 - Nov 2024",
     description: [
-      "Took ownership of the development lifecycle, from coding and debugging to deployment and maintenance.",
-      " Developed an internal company tool for remote TV data management.",
-      " Set up infrastructure using Ansible, Nginx Proxy Manager, GitLab CI/CD pipelines, and Docker.",
-      " Worked with Java Spring Boot (backend) and React with TypeScript (frontend).",
-      " Collaborated with two developers, conducting code reviews and approvals (Git).",
-      " Technologies: Java, Spring Boot, Node.js, React, APIs, Docker",
+      "Developed an internal company tool for remote TV content  management (images, videos, PDFs) using these tools:",
+      "Set up infrastructure using Ansible, Nginx Proxy Manager, GitLab CI/CD pipelines, and Docker.",
+      "Worked with Java Spring Boot (backend) and React with TypeScript (frontend).",
+      "Collaborated with two developers, conducting code reviews and approvals using Gitlab.",
     ],
-    logo: telesoftas, // Ensure you import this logo at the top
-  },
-  {
-    id: 2,
-    title: "Freelance Web Developer",
-    company: "Self-Employed",
-    date: "2022 - Present",
-    description:
-      "Developed custom web solutions for small businesses, focusing on responsive design, accessibility, and performance optimization.",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/6/60/Web_Development_Logo.png", // Replace with actual logo
+    logo: telesoftas,
   },
   {
     id: 3,
-    title: "Teaching Assistant",
-    company: "University XYZ",
-    date: "2021 - 2022",
+    title: "My Future",
+    company: "My Future",
+    date: "Present",
     description:
-      "Assisted in teaching programming courses, helping students debug their projects and understand key software engineering concepts.",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/e/ec/University_Logo.png", // Replace with actual university logo
+      "Currently looking for any new opportunities to expand my knowledge, whether that be internships or junior positions.",
+    logo: hourglass,
   },
 ];
 
 export default function Work() {
   const [selectedId, setSelectedId] = useState(null);
 
+  const selectedJob = workExperience.find((job) => job.id === selectedId);
+
   return (
-    <div className="flex flex-col items-center py-10 px-6">
+    <div className="flex flex-col items-center py-10 px-6 min-h-[80vh]">
       <h2 className="text-4xl font-bold text-white mb-8">Work Experience</h2>
 
       {/* Timeline Container */}
-      <div className="relative w-full max-w-5xl flex items-center justify-center space-x-8 overflow-x-auto py-8 border-b-4 border-gray-500 gap-4">
+      <div className="min-w-3xl flex items-center justify-center space-x-8 overflow-x-auto py-8 border-b-4 border-gray-500 gap-4">
         {workExperience.map((job) => (
           <div
             key={job.id}
@@ -55,7 +57,7 @@ export default function Work() {
             <img
               src={job.logo}
               alt={job.company}
-              className={`w-14 h-14 rounded-full shadow-md transition-all duration-300 hover:scale-110 ${
+              className={`w-16 h-16 object-contain rounded-full transition-transform duration-300 hover:scale-110 ${
                 selectedId === job.id ? "scale-110" : ""
               }`}
               onClick={() =>
@@ -65,7 +67,7 @@ export default function Work() {
 
             {/* Job Title */}
             <div
-              className={`mt-2 px-4 py-2 text-center rounded-lg transition-all duration-300 ${
+              className={`mt-4 w-52 px-4 py-2 text-center rounded-lg transition-colors duration-300 ${
                 selectedId === job.id
                   ? "bg-gray-700 text-white"
                   : "text-gray-300 hover:bg-gray-600"
@@ -81,19 +83,26 @@ export default function Work() {
         ))}
       </div>
 
-      {/* Description Section */}
-      {selectedId && (
-        <div className="mt-6 p-6 text-gray-300 bg-gray-700 rounded-lg max-w-3xl animate-fadeIn">
-          <h3 className="text-xl font-semibold">
-            {workExperience.find((job) => job.id === selectedId).title}
-          </h3>
+      {/* Description Section: Render Only If Something is Selected */}
+      {selectedJob && (
+        <div className="mt-6 p-6 text-gray-300 bg-gray-700 rounded-lg min-w-3xl max-w-3xl">
+          <h3 className="text-xl font-semibold">{selectedJob.title}</h3>
           <p className="text-gray-400">
-            {workExperience.find((job) => job.id === selectedId).company} -{" "}
-            {workExperience.find((job) => job.id === selectedId).date}
+            {selectedJob.company}: {selectedJob.date}
           </p>
-          <p className="mt-4">
-            {workExperience.find((job) => job.id === selectedId).description}
-          </p>
+
+          {Array.isArray(selectedJob.description) ? (
+            <>
+              <p className="mt-4 font-semibold">{selectedJob.description[0]}</p>
+              <ul className="mt-2 list-disc pl-5">
+                {selectedJob.description.slice(1).map((line, index) => (
+                  <li key={index}>{line}</li>
+                ))}
+              </ul>
+            </>
+          ) : (
+            <p className="mt-4">{selectedJob.description}</p>
+          )}
         </div>
       )}
     </div>

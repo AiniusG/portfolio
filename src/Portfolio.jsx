@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Projects from "./components/Projects";
 import Work from "./components/Work";
 import Skills from "./components/Skills";
 import About from "./components/About";
 import Contacts from "./components/Contacts";
 
-const sections = ["About", "Experience", "Skills", "Projects", "Contacts"];
+// const sections = ["About", "Experience", "Skills", "Projects", "Contacts"];
+const sections = ["About", "Experience", "Contacts"];
 const socialMedia = [
   {
     name: "Github",
-    url: "https://github.com/AiniusG", // Replace with actual link
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/300px-GitHub_Invertocat_Logo.svg.png?20230417032619", // Replace with actual image
+    url: "https://github.com/AiniusG",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Github_logo_svg.svg/640px-Github_logo_svg.svg.png",
   },
   {
     name: "LinkedIn",
@@ -19,8 +21,8 @@ const socialMedia = [
   },
   {
     name: "Facebook",
-    url: "https://www.facebook.com/ainius.gecas", // Replace with actual link
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Facebook_icon_2013.svg/640px-Facebook_icon_2013.svg.png", // Replace with actual image
+    url: "https://www.facebook.com/ainius.gecas",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Facebook_icon_2013.svg/640px-Facebook_icon_2013.svg.png",
   },
 ];
 
@@ -31,8 +33,25 @@ export default function Portfolio() {
     document.title = `My Portfolio - ${activeSection}`;
   }, [activeSection]);
 
+  const renderSection = () => {
+    switch (activeSection) {
+      case "About":
+        return <About />;
+      case "Experience":
+        return <Work />;
+      // case "Skills":
+      //   return <Skills />;
+      // case "Projects":
+      //   return <Projects />;
+      case "Contacts":
+        return <Contacts />;
+      default:
+        return null;
+    }
+  };
+
   return (
-    <div className="min-h-screen min-w-screen bg-gray-900 text-white pt-10 px-10 flex flex-col">
+    <div className="min-h-screen min-w-screen bg-gradient-to-br from-gray-900 via-gray-950 to-gray-900 text-white pt-10 px-10 flex flex-col">
       <div className="flex justify-end gap-4 mb-6">
         {sections.map((section) => (
           <button
@@ -48,12 +67,18 @@ export default function Portfolio() {
           </button>
         ))}
       </div>
-      <div key={activeSection} className="flex-grow flex">
-        {activeSection === "About" && <About />}
-        {activeSection === "Experience" && <Work />}
-        {activeSection === "Skills" && <Skills />}
-        {activeSection === "Projects" && <Projects />}
-        {activeSection === "Contacts" && <Contacts />}
+      <div className="flex-grow flex justify-center items-center">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeSection}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.4 }}
+          >
+            {renderSection()}
+          </motion.div>
+        </AnimatePresence>
       </div>
       <div className="flex justify-end gap-4 mb-6">
         {socialMedia.map(({ name, url, img }) => (
