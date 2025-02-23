@@ -1,42 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import telesoftas from "/Telesoftas.png";
-import hourglass from "/Hourglass.png";
-import vu from "/Vilnius_university_logo.png";
-
-const workExperience = [
-  {
-    id: 1,
-    title: "Software Engineering Student",
-    company: "Vilnius University",
-    date: "2023 - Present",
-    description:
-      "I am currently a 2nd year bachelor's student at Vilnius University studying software engineering.",
-    logo: vu,
-  },
-  {
-    id: 2,
-    title: "Full Stack Internship",
-    company: "Telesoftas",
-    date: "Aug 2024 - Nov 2024",
-    description: [
-      "Developed an internal company tool for remote TV content management (images, videos, PDFs) using these tools:",
-      "Set up infrastructure using Ansible, Nginx Proxy Manager, GitLab CI/CD pipelines, and Docker.",
-      "Worked with Java Spring Boot (backend) and React with TypeScript (frontend).",
-      "Collaborated with two developers, conducting code reviews and approvals using GitLab.",
-    ],
-    logo: telesoftas,
-  },
-  {
-    id: 3,
-    title: "My Future",
-    company: "My Future",
-    date: "Present",
-    description:
-      "Currently looking for any new opportunities to expand my knowledge, whether that be internships or junior positions.",
-    logo: hourglass,
-  },
-];
+import { workExperience } from "../data/workData.js";
 
 export default function Work() {
   const [selectedId, setSelectedId] = useState(null);
@@ -68,7 +32,7 @@ export default function Work() {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
-            {/* Animated Logo */}
+            {/* Logo */}
             <motion.img
               src={job.logo}
               alt={job.company}
@@ -80,7 +44,7 @@ export default function Work() {
               }
             />
 
-            {/* Job Title with Hover Effect */}
+            {/* Job Title */}
             <motion.div
               className={`mt-4 w-52 px-4 py-2 text-center rounded-lg transition-colors duration-300 ${
                 selectedId === job.id
@@ -100,16 +64,16 @@ export default function Work() {
         ))}
       </motion.div>
 
-      {/* Description Section (Fixed Height & Smooth Transition) */}
+      {/* Description Section */}
       <div className="relative mt-6 min-w-3xl max-w-3xl h-44">
         <AnimatePresence mode="wait">
           {selectedJob && (
             <motion.div
               key={selectedJob.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.4 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
               className="absolute top-0 left-0 w-full p-6 text-gray-300 bg-gray-700 rounded-lg shadow-lg"
             >
               <h3 className="text-xl font-semibold">{selectedJob.title}</h3>
@@ -126,9 +90,9 @@ export default function Work() {
                     {selectedJob.description.slice(1).map((line, index) => (
                       <motion.li
                         key={index}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.1 * index, duration: 0.3 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.1 * index, duration: 0.4 }}
                       >
                         {line}
                       </motion.li>
