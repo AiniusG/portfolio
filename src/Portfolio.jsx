@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Projects from "./components/Projects";
 import Work from "./components/Work";
@@ -6,8 +6,7 @@ import Skills from "./components/Skills";
 import About from "./components/About";
 import Contacts from "./components/Contacts";
 
-// const sections = ["About", "Experience", "Skills", "Projects", "Contacts"];
-const sections = ["About", "Experience", "Contacts"];
+const sections = ["About", "Experience", "Skills", "Projects", "Contacts"];
 const socialMedia = [
   {
     name: "Github",
@@ -39,10 +38,10 @@ export default function Portfolio() {
         return <About />;
       case "Experience":
         return <Work />;
-      // case "Skills":
-      //   return <Skills />;
-      // case "Projects":
-      //   return <Projects />;
+      case "Skills":
+        return <Skills />;
+      case "Projects":
+        return <Projects />;
       case "Contacts":
         return <Contacts />;
       default:
@@ -71,9 +70,9 @@ export default function Portfolio() {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeSection}
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
+            exit={{ opacity: 0, y: 0 }}
             transition={{ duration: 0.4 }}
           >
             {renderSection()}
