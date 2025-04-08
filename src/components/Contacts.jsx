@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 export default function Contacts() {
   const contacts = [
     { label: "Phone", value: "+370 618 38654" },
@@ -13,7 +14,14 @@ export default function Contacts() {
 
   return (
     <div className="flex flex-col items-center py-10 px-6 min-h-[80vh]">
-      <h2 className="text-4xl font-bold text-white mb-6">Contacts</h2>
+      <motion.h2
+        className="text-4xl font-bold text-white pb-8"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        Contancts
+      </motion.h2>
       <div className="bg-gray-800 p-6 rounded-lg text-white max-w-md w-full">
         {contacts.map((contact, index) => (
           <div
