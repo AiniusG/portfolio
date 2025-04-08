@@ -1,25 +1,13 @@
 import personalPic from "/Me.jpg";
 
-export default function About({ isMobile }) {
+export default function About() {
   return (
-    <div
-      className={`flex flex-grow ${
-        isMobile ? "flex-col" : "flex-row"
-      } justify-around items-center gap-8 p-4`}
-    >
-      <div className={`max-w-lg text-center ${isMobile ? "" : "md:text-left"}`}>
-        <h1
-          className={`${
-            isMobile ? "text-3xl" : "text-5xl"
-          } font-extrabold text-gray-300 pb-4`}
-        >
+    <div className="flex flex-col sm:flex-row justify-around items-center gap-8 p-4 flex-grow">
+      <div className="max-w-lg text-center sm:text-left">
+        <h1 className="text-3xl sm:text-5xl font-extrabold text-gray-300 pb-4">
           Hi! 👋
         </h1>
-        <p
-          className={`${
-            isMobile ? "text-base" : "text-lg"
-          } text-gray-100 leading-relaxed`}
-        >
+        <p className="text-base sm:text-lg text-gray-100 leading-relaxed">
           I am a motivated and disciplined{" "}
           <span className="font-bold text-gray-300">
             software engineering student/full stack developer
@@ -31,13 +19,11 @@ export default function About({ isMobile }) {
           teamwork!
         </p>
       </div>
-      <div className={`${isMobile ? "mt-6" : ""}`}>
+      <div className="mt-6 sm:mt-0">
         <img
           src={personalPic}
-          alt="Personal Picture"
-          className={`${
-            isMobile ? "w-64 h-64" : "w-80 h-80 md:w-96 md:h-96"
-          } object-cover rounded-full shadow-lg`}
+          alt="Photo of [Your Name], a software engineering student"
+          className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 object-cover rounded-full shadow-lg"
         />
       </div>
     </div>
