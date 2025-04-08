@@ -20,7 +20,7 @@ export default function Contacts() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        Contancts
+        Contacts
       </motion.h2>
       <div className="bg-gray-800 p-6 rounded-lg text-white max-w-md w-full">
         {contacts.map((contact, index) => (
