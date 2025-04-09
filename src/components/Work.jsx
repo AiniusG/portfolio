@@ -7,10 +7,7 @@ export default function Work() {
   const selectedJob = workExperience.find((job) => job.id === selectedId);
 
   return (
-    <motion.div
-      className="flex flex-col items-center py-10 px-6 min-h-[80vh]"
-      layout
-    >
+    <motion.div className="flex flex-col items-center py-10 px-6" layout>
       <motion.h2
         className="text-4xl font-bold text-white mb-8"
         initial={{ opacity: 0, y: -20 }}

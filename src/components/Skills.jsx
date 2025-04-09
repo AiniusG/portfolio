@@ -23,7 +23,7 @@ export default function Skills() {
             className="bg-gray-800 text-white flex items-center justify-center h-24 w-24 cursor-pointer rounded-lg"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
-            onClick={() => setSelected(selected === index ? null : index)}
+            onClick={() => setSelected(index)}
           >
             <img src={skill.logo} alt={skill.name} className="h-16" />
           </motion.div>

@@ -3,11 +3,11 @@ import personalPic from "/Me.jpg";
 export default function About() {
   return (
     <div className="flex flex-col sm:flex-row justify-around items-center gap-8 p-4 flex-grow">
-      <div className="max-w-lg text-center sm:text-left">
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-gray-300 pb-4">
+      <div className="max-w-lg text-left sm:text-left">
+        <h1 className="text-3xl sm:text-5xl text-center sm:text-left font-extrabold text-gray-300 pb-4">
           Hi! 👋
         </h1>
-        <p className="text-base sm:text-lg text-gray-100 leading-relaxed">
+        <p className="text-base text-gray-100 leading-relaxed">
           I am a motivated and disciplined{" "}
           <span className="font-bold text-gray-300">
             software engineering student/full stack developer

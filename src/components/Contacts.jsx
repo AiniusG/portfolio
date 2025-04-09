@@ -13,7 +13,7 @@ export default function Contacts() {
   };
 
   return (
-    <div className="flex flex-col items-center py-10 px-6 min-h-[80vh]">
+    <div className="flex flex-col items-center py-10 px-6">
       <motion.h2
         className="text-4xl font-bold text-white pb-8"
         initial={{ opacity: 0, y: -10 }}

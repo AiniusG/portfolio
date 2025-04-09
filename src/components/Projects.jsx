@@ -7,7 +7,7 @@ export default function Projects() {
   const [zoomedImage, setZoomedImage] = useState(null);
 
   return (
-    <div className="flex flex-col items-center py-10 px-6 min-h-[80vh] max-h-[80vh]">
+    <div className="flex flex-col items-center py-10 px-6">
       <motion.h2
         className="text-4xl font-bold text-white pb-8"
         initial={{ opacity: 0, y: -10 }}
@@ -34,7 +34,7 @@ export default function Projects() {
           {selectedProject && (
             <motion.div
               key={selectedProject.id}
-              className="bg-gray-800 p-6 rounded-lg text-gray-300 max-h-140 flex items-start"
+              className="bg-gray-800 p-6 rounded-lg text-gray-300 max-h-100 flex items-start min-w-7xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -58,7 +58,7 @@ export default function Projects() {
                     key={index}
                     src={image}
                     alt={`${selectedProject.title} screenshot ${index + 1}`}
-                    className="w-full h-auto object-cover rounded-lg cursor-pointer transition-transform hover:scale-105"
+                    className="w-full h-40 object-cover rounded-lg cursor-pointer transition-transform hover:scale-105"
                     onClick={() => setZoomedImage(image)}
                   />
                 ))}
