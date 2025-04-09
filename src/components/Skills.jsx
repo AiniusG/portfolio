@@ -16,16 +16,16 @@ export default function Skills() {
         Skills
       </motion.h2>
 
-      <motion.div layout className="grid grid-cols-4 gap-4 w-full">
+      <motion.div layout className="grid grid-cols-4 sm:gap-4 gap-2 w-full">
         {skillData.map((skill, index) => (
           <motion.div
             key={index}
-            className="bg-gray-800 text-white flex items-center justify-center h-24 w-24 cursor-pointer rounded-lg"
+            className="bg-gray-800 text-white flex items-center justify-center sm:h-24 sm:w-24 w-18 h-18 cursor-pointer rounded-lg"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
             onClick={() => setSelected(index)}
           >
-            <img src={skill.logo} alt={skill.name} className="h-16" />
+            <img src={skill.logo} alt={skill.name} className="sm:h-16 h-12" />
           </motion.div>
         ))}
       </motion.div>
@@ -39,7 +39,7 @@ export default function Skills() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.3 }}
-            className="bg-gray-900 text-white p-6 rounded-lg shadow-lg max-w-108 mt-6"
+            className="bg-gray-900 text-white p-6 rounded-lg shadow-lg sm:max-w-108 max-w-78 mt-6"
           >
             <h2 className="text-xl font-bold">{skillData[selected].name}</h2>
             <p className="mt-2">{skillData[selected].description}</p>
